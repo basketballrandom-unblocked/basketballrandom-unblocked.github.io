@@ -37,17 +37,25 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
-        // Filter games STARTING with input letter
+        // Filter games by name anywhere in the text
         const results = games.filter(game => 
-            game.name.toLowerCase().startsWith(input)
+            game.name.toLowerCase().includes(input)
         );
 
         // Display results
         if (results.length > 0) {
             results.forEach(game => {
-                const item = document.createElement("div");
+                const slug = game.url.replace(/^\/?game\//, "").replace(/\/$/, "");
+                const imageUrl = `/assets/images/${slug}@2x.webp`;
+                const item = document.createElement("a");
                 item.className = "game-item";
-                item.innerHTML = `<a href="https://basket-random.pro/${game.url}">${game.name}</a>`;
+                item.href = `/${game.url}`;
+                item.innerHTML = `
+                    <img src="${imageUrl}" alt="${game.name}" onerror="this.style.display='none'">
+                    <div class="game-info">
+                        <span>${game.name}</span>
+                    </div>
+                `;
                 gameList.appendChild(item);
             });
         } else {

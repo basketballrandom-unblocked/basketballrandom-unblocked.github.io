@@ -151,37 +151,51 @@
     <!-- Custom Cursor End -->
 
     <!-- Header Area Start -->
-    <nav class="fag-header navbar navbar-expand-lg">
+   <nav class="fag-header navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="/assets/img/logo.webp" alt="Basket Randoms" />
             </a>
 
-            <!-- Mobile Search Icon - Only visible on mobile -->
-            <button class="mobile-search-btn d-lg-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-label="Search">
-                <i class="fas fa-search"></i>
-            </button>
+            
 
             <!-- Hamburger Menu -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <span class="menu-toggle">
+                <span class="menu-toggle"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!-- Search Bar - Center on desktop, in menu on mobile -->
+                <!-- Categories Menu - Left side on desktop, top on mobile -->
+                <div class="header_menu">
+                    <a class="nav-link" href="/category/action/">Action</a>
+                    <a class="nav-link" href="/category/adventure/">Adventure</a>
+                    <a class="nav-link" href="/category/arcade/">Arcade</a>
+                    <a class="nav-link" href="/category/basketball-games/">Basketball</a>
+                    <a class="nav-link" href="/category/sports/">Sports</a>
+                    <div class="dropdown category-dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="moreDropdown">More</a>
+                        <ul class="dropdown-menu" aria-labelledby="moreDropdown">
+                            <li><a class="dropdown-item" href="/category/bike/">Bike</a></li>
+                            <li><a class="dropdown-item" href="/category/boys-games/">Boys Games</a></li>
+                            <li><a class="dropdown-item" href="/category/car/">Car</a></li>
+                            <li><a class="dropdown-item" href="/category/fighting/">Fighting</a></li>
+                            <li><a class="dropdown-item" href="/category/girls-games/">Girls Games</a></li>
+                            <li><a class="dropdown-item" href="/category/horror/">Horror</a></li>
+                            <li><a class="dropdown-item" href="/all-categories/">All Categories</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Search Bar - Right side on desktop, below on mobile -->
                 <div class="search-container">
                     <div class="search-wrapper">
                         <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="gameSearch" placeholder="Search games here" oninput="searchGames()">
+                        <input type="text" id="gameSearch" placeholder="Search games here">
                     </div>
                     <div id="gameList"></div>
                 </div>
-
-                <!-- Categories Menu - Right side -->
-                 
             </div>
         </div>
     </nav>
@@ -1315,6 +1329,8 @@
     <script src="/games.json"></script>
  <script src="/script.js"></script>
 <script src="/assets/js/refresh.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/hamburger.js"></script>
 
 </body>
 </html>
