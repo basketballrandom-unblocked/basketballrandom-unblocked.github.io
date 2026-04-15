@@ -1,4 +1,21 @@
 (function () {
+            var cursorLarge = document.getElementById('cursor-large');
+            var cursorSmall = document.getElementById('cursor-small');
+            if (!cursorLarge && !cursorSmall) return;
+            document.addEventListener('mousemove', function (e) {
+                var x = e.clientX + 'px';
+                var y = e.clientY + 'px';
+                if (cursorLarge) {
+                    cursorLarge.style.left = x;
+                    cursorLarge.style.top = y;
+                }
+                if (cursorSmall) {
+                    cursorSmall.style.left = x;
+                    cursorSmall.style.top = y;
+                }
+            });
+        })();
+(function () {
     var fsBtn = document.getElementById('enter-fullscreen');
     var exitBtn = document.getElementById('fullscreen-exit');
     var gamePlayer = document.getElementById('game-player') || document.getElementById('test_app_frame');
@@ -121,3 +138,21 @@
     // Initial state
     updateButton();
 })();
+
+(function () {
+            var cursorLarge = document.getElementById('cursor-large');
+            var cursorSmall = document.getElementById('cursor-small');
+            if (!cursorLarge && !cursorSmall) return;
+            document.addEventListener('mousemove', function (e) {
+                var x = e.clientX + 'px';
+                var y = e.clientY + 'px';
+                if (cursorLarge) {
+                    cursorLarge.style.left = x;
+                    cursorLarge.style.top = y;
+                }
+                if (cursorSmall) {
+                    cursorSmall.style.left = x;
+                    cursorSmall.style.top = y;
+                }
+            });
+        })();
