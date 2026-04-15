@@ -19,5 +19,5 @@ function loadJS(FILE_URL, async = true) {
 }
  
 window.addEventListener("load", function () {
-  loadJS("/index/", true);
+  loadJS("/", true);
 });

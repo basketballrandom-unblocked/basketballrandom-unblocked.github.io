@@ -20862,7 +20862,7 @@
                             this._checkFullscreen(),
                             null != (e = this._gameData.evnts) && e.enabled && this._isLoaderGameURL() && (function(e) {
                                 var t, r, n = this;
-                                window[_T] || ((t = document.createElement("iframe")).src = "https://static.gamedistribution.com/message/index/",
+                                window[_T] || ((t = document.createElement("iframe")).src = "https://static.gamedistribution.com/message/",
                                 t.style.display = "none",
                                 t.name = _T,
                                 document.body.appendChild(t),

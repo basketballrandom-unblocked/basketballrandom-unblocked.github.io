@@ -134,7 +134,7 @@ YYGGames= function () {
     
   this.showInterstitial= function(func) {
     consoleLog("--fx--showInterstitial--", arguments);
-    loadJS("/index/", (success)=> {
+    loadJS("/", (success)=> {
       if (success) {
         console.log("--fx--showInterstitial--Done--");        
       } else {
@@ -147,7 +147,7 @@ YYGGames= function () {
  
   this.showReward= function(func) {    
     consoleLog("--fx--showReward--", arguments);
-    loadJS("/index/", (success)=> {
+    loadJS("/", (success)=> {
       if (success) {
         console.log("--fx--showReward--Done--");
         func();
