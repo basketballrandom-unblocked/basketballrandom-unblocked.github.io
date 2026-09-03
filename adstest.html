@@ -1,135 +1,169 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game with Ad Popup</title>
+<title>k9w4ox on Basket Rondom for free</title>
+<meta name="description" content="k9w4ox on Basket Rondom for free">
+<meta name="robots" content="noindex, nofollow">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 100%; height: 100%; overflow: hidden; background: #111; font-family: Arial, Helvetica, sans-serif; }
 
-  /* ===== GAME SECTION ===== */
-  #game-section {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    transition: filter 0.3s ease;
-  }
-  #game-frame {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-  }
-  /* Jab ad show ho rahi ho to game blurred/dim ho jaye taake user ko lage picha game hai */
-  #game-section.blocked {
-    filter: blur(6px) brightness(0.5);
-  }
-  /* Ad ke doran user game ko click na kar sake */
-  #game-section.blocked #game-frame {
-    pointer-events: none;
-  }
+html,
+body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-  /* ===== FULLSCREEN AD OVERLAY ===== */
-  #ad-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.45);
-    display: none;              /* JS se flex hoga jab dikhana ho */
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-  }
+#game-root{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+}
 
-  #ad-overlay.show {
-    display: flex;
-  }
+#ad-overlay{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,0.78);
+    z-index:2147483647;
+    backdrop-filter: blur(2px);
+}
 
-  /* ===== AD BOX (350x250 - Medium Rectangle) ===== */
-  #ad-box-wrapper {
-    position: relative;
-    width: 350px;
-    background: #1b1b1b;
-    border-radius: 6px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
-    overflow: hidden;
-  }
+#ad-overlay.show{
+    display:flex;
+}
 
-  /* Yahan apna ad code / script daal sakte hain (350x250 slot) */
-  #ad-slot {
-    width: 350px;
-    height: 250px;
-    background: #2a2a2a;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #555;
-    font-size: 12px;
-    position: relative;
-  }
+#ad-box{
+    position:relative;
+    width:min(92vw, 300px);
+    height:250px;
+    max-width:300px;
+    max-height:250px;
+    border-radius:16px;
+    overflow:hidden;
+    background:linear-gradient(135deg, #111827, #1f2937, #0f172a);
+    border:1px solid rgba(255,255,255,0.12);
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+}
 
-  #ad-label {
-    position: absolute;
-    top: 6px;
-    left: 8px;
-    font-size: 10px;
-    color: #999;
-    letter-spacing: 1px;
-    z-index: 2;
-  }
+#ad-content{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.35), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(168,85,247,0.35), transparent 35%),
+        linear-gradient(135deg, #111827, #1f2937 50%, #0f172a);
+    color:#fff;
+    padding:0;
+    box-sizing:border-box;
+}
 
-  /* ===== BOTTOM BAR (YouTube style) ===== */
-  #ad-bottom-bar {
-    width: 350px;
-    height: 34px;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 10px;
-    gap: 8px;
-  }
+#ad-embed{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:transparent;
+}
 
-  #countdown-text {
-    color: #ddd;
-    font-size: 13px;
-    white-space: nowrap;
-  }
+#ad-embed iframe,
+#ad-embed > iframe{
+    width:100% !important;
+    height:100% !important;
+    max-width:100% !important;
+    max-height:100% !important;
+    border:0;
+    display:block;
+}
 
-  /* ===== SKIP BUTTON ===== */
-  #skip-btn {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 13px;
-    color: #000;
-    background: #fff;
-    border-radius: 3px;
-    padding: 5px 12px;
-    user-select: none;
-    white-space: nowrap;
-  }
-  #skip-btn.visible {
-    display: flex;
-  }
+.ad-fallback{
+    margin:0;
+    color:#dbeafe;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+}
+
+#ad-tag{
+    position:absolute;
+    top:10px;
+    left:10px;
+    color:#dbeafe;
+    border:1px solid rgb(255, 255, 255);
+    background:rgb(0, 0, 0);
+    border-radius:999px;
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    padding:4px 8px;
+    z-index:2;
+}
+
+#skip-ad{
+    position:absolute;
+    right:12px;
+    bottom:12px;
+    border:1px solid rgb(255, 255, 255);
+    background:rgb(0, 0, 0);
+    color:#fff;
+    border-radius:999px;
+    padding:8px 14px;
+    font-size:0.78rem;
+    font-weight:700;
+    cursor:pointer;
+    transition:opacity 0.2s ease, transform 0.2s ease;
+}
+
+#skip-ad:disabled{
+    opacity:1.55;
+    cursor:not-allowed;
+}
+
+#skip-ad:not(:disabled):hover{
+    transform:translateY(-1px);
+}
+
+@media (max-width: 480px){
+    #ad-box{
+        width:min(92vw, 340px);
+        height:min(74vw, 240px);
+    }
+
+    #ad-content{
+        padding:18px 12px;
+    }
+}
+
 </style>
+
+<script src="../../games.js"></script>
+
 </head>
 <body>
 
-<div id="game-section">
-  <iframe id="game-frame" data-src="https://html5.gamemonetize.co/8ht58edn6drpz9d5oikezoqkkuqwvvm4/" allowfullscreen></iframe>
-</div>
+<div id="game-root"></div>
 
-<!-- Fullscreen Ad Popup -->
-<div id="ad-overlay">
-  <div id="ad-box-wrapper">
-    <div id="ad-slot">
-      <span id="ad-label"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1879469387670618"
+<div id="ad-overlay" aria-live="polite">
+    <div id="ad-box">
+        <div id="ad-content">
+            <span id="ad-tag">Ad</span>
+            <div id="ad-embed">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1879469387670618"
      crossorigin="anonymous"></script>
 <!-- basketball.pro -->
 <ins class="adsbygoogle"
@@ -139,102 +173,105 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-</span>
-      <!-- ===== 350x250 Ad Slot: apna ad script/iframe yahan daalein ===== -->
-      <!-- Example: <ins class="adsbygoogle" style="display:inline-block;width:350px;height:250px" ...></ins> -->
+            </div>
+        </div>
+        <button id="skip-ad" type="button" disabled>Skip Ad (6)</button>
     </div>
-
-    <div id="ad-bottom-bar">
-      <span id="countdown-text">Ad ends in 5</span>
-      <div id="skip-btn" onclick="closeAd()">Skip Ad ▶</div>
-    </div>
-  </div>
 </div>
 
 <script>
-  const AD_INTERVAL = 10 * 60 * 1000;   // har 10 minute baad ad dikhana
-  const SKIP_DELAY   = 5 * 1000;        // 5 second baad skip button
-  const AUTO_HIDE     = 30 * 1000;      // 30 second baad khud hide
 
-  const overlay        = document.getElementById('ad-overlay');
-  const gameSection     = document.getElementById('game-section');
-  const skipBtn         = document.getElementById('skip-btn');
-  const countdownText   = document.getElementById('countdown-text');
-  const gameFrame       = document.getElementById('game-frame');
+(() => {
 
-  let skipTimer, autoHideTimer, countdownInterval;
-  let gameLoaded = false;
+    const GAME_ID = "k9w4ox";
 
-  function loadGame() {
-    if (!gameLoaded) {
-      gameFrame.src = gameFrame.getAttribute('data-src');
-      gameLoaded = true;
+    if (!GAME_URLS[GAME_ID]) return;
+
+    const host = document.getElementById("game-root");
+
+    const shadow = host.attachShadow({
+        mode: "closed"
+    });
+
+    const frame = document.createElement("iframe");
+
+    frame.src = GAME_URLS[GAME_ID];
+
+    frame.allowFullscreen = true;
+
+    frame.setAttribute(
+        "allow",
+        "fullscreen; autoplay; encrypted-media; accelerometer; gyroscope"
+    );
+
+    frame.style.cssText = `
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        border:0;
+    `;
+
+    shadow.appendChild(frame);
+
+})();
+
+
+    const adOverlay = document.getElementById("ad-overlay");
+    const skipAdButton = document.getElementById("skip-ad");
+    const autoHideDelay = 30000;
+    const reappearDelay = 300000;
+    let skipTimer = null;
+    let hideTimer = null;
+    let reappearTimer = null;
+
+    function showAd() {
+        adOverlay.classList.add("show");
+        skipAdButton.disabled = true;
+        skipAdButton.textContent = "Skip Ad (6)";
+
+        let remaining = 6;
+        clearInterval(skipTimer);
+        skipTimer = setInterval(() => {
+            remaining -= 1;
+            if (remaining > 0) {
+                skipAdButton.textContent = `Skip Ad (${remaining})`;
+                return;
+            }
+
+            skipAdButton.textContent = "Skip Ad";
+            skipAdButton.disabled = false;
+            clearInterval(skipTimer);
+        }, 1000);
+
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => {
+            hideAd();
+        }, autoHideDelay);
     }
-  }
 
-  function showAd() {
-    // Game turant load karo (agar pehli baar hai) taake background mein blurred dikhe
-    loadGame();
+    function hideAd() {
+        adOverlay.classList.remove("show");
+        clearInterval(skipTimer);
+        clearTimeout(hideTimer);
+        skipAdButton.disabled = true;
+        skipAdButton.textContent = "Skip Ad";
 
-    overlay.classList.add('show');
-    gameSection.classList.add('blocked');
+        clearTimeout(reappearTimer);
+        reappearTimer = setTimeout(() => {
+            showAd();
+        }, reappearDelay);
+    }
 
-    skipBtn.classList.remove('visible');
-    countdownText.style.display = 'inline';
+    skipAdButton.addEventListener("click", () => {
+        if (skipAdButton.disabled) return;
+        hideAd();
+    });
 
-    let remaining = SKIP_DELAY / 1000;
-    countdownText.textContent = 'Ad ends in ' + remaining;
+    showAd();
+ 
 
-    countdownInterval = setInterval(() => {
-      remaining--;
-      if (remaining > 0) {
-        countdownText.textContent = 'Ad ends in ' + remaining;
-      }
-      if (remaining <= 0) {
-        clearInterval(countdownInterval);
-      }
-    }, 1000);
-
-    // 5 second baad skip button dikhado
-    skipTimer = setTimeout(() => {
-      countdownText.style.display = 'none';
-      skipBtn.classList.add('visible');
-    }, SKIP_DELAY);
-
-    // 30 second baad khud band ho jaye agar skip na kare
-    autoHideTimer = setTimeout(() => {
-      closeAd();
-    }, AUTO_HIDE);
-  }
-
-  function closeAd() {
-    overlay.classList.remove('show');
-    gameSection.classList.remove('blocked');
-    clearTimeout(skipTimer);
-    clearTimeout(autoHideTimer);
-    clearInterval(countdownInterval);
-  }
-
-  // Page load hotay hi sabse pehle ad popup show ho (game background mein load ho jayegi, blurred)
-  window.addEventListener('DOMContentLoaded', showAd);
-
-  // Har 10 minute baad dobara ad show hoti rahegi
-  setInterval(showAd, AD_INTERVAL);
 </script>
-<div id="gamemonetize-video"></div>
-<script type="text/javascript">
-   window.VIDEO_OPTIONS = {
-       gameid : "8ht58edn6drpz9d5oikezoqkkuqwvvm4",
-       width  : "100%",
-       height : "480px",
-       color  : "#3f007e",
-       getAds  : "false"
-   };
-   (function (a, b, c) {
-      var d = a.getElementsByTagName(b)[0];
-      a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://api.gamemonetize.com/video.js", d.parentNode.insertBefore(a, d))
-   })(document, "script", "gamemonetize-video-api"); 
-</script>  
 
 </body>
 </html>
